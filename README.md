@@ -1,17 +1,21 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+This project is taking a step back from working with CSS and HTML to more focus on implemention obkect oriented programming (OOP) an focusing more on using Javascript and modules>
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+The app allows you to create a todo list. it utilizes validation to make sure you fill in the correct information. it also uses a basic modal setup insert said information. there are also checkboxes you can use when completing a task.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+- Javascript
+- HTML
+- CSS
+- OOP
+- Modules
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+https://deedee21000.github.io/se_project_todo-app/
