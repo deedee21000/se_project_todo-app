@@ -22,27 +22,11 @@ const closeModal = (modal) => {
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
-function updateCounter() {
-  const todos = todosList.querySelectorAll(".todo");
-  const total = todos.length;
-  const completed = todosList.querySelectorAll(
-    ".todo__completed:checked"
-  ).length;
-  counterText.textContent = `Showing ${completed} out of ${total} completed`;
-}
-
 function renderTodo(item) {
   const todo = new Todo(item, todoTemplateSelector);
   const todoElement = todo.getView();
 
-  const checkbox = todoElement.querySelector(".todo__completed");
-  checkbox.addEventListener("change", updateCounter);
-
-  const deleteBtn = todoElement.querySelector(".todo__delete-btn");
-  deleteBtn.addEventListener("click", updateCounter);
-
   todosList.append(todoElement);
-  updateCounter();
 }
 
 addTodoButton.addEventListener("click", () => {

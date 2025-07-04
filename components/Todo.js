@@ -6,16 +6,16 @@ export default class Todo {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".todo__delete-btn")
-      .addEventListener("click", () => {
-        this._element.remove();
-      });
-    this._element
-      .querySelector(".todo__completed")
-      .addEventListener("change", (e) => {
-        this._data.completed = e.target.checked;
-      });
+    const checkbox = this._element.querySelector(".todo__completed");
+    const deleteBtn = this._element.querySelector(".todo__delete-btn");
+
+    checkbox.addEventListener("change", (e) => {
+      this._data.completed = e.target.checked;
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      this._element.remove();
+    });
   }
 
   getView() {
@@ -33,14 +33,9 @@ export default class Todo {
     labelEl.setAttribute("for", `todo-${this._data.id}`);
 
     if (this._data.date && !isNaN(new Date(this._data.date))) {
-      dateEl.textContent = `Due: ${new Date(this._data.date).toLocaleString(
-        "en-US",
-        {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        }
-      )}`;
+      dateEl.textContent = `Due: ${new Date(
+        this._data.date
+      ).toLocaleDateString()}`;
     }
 
     this._setEventListeners();
