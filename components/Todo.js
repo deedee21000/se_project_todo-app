@@ -33,9 +33,14 @@ export default class Todo {
     labelEl.setAttribute("for", `todo-${this._data.id}`);
 
     if (this._data.date && !isNaN(new Date(this._data.date))) {
-      dateEl.textContent = `Due: ${new Date(
-        this._data.date
-      ).toLocaleDateString()}`;
+      dateEl.textContent = `Due: ${new Date(this._data.date).toLocaleDateString(
+        "en-US",
+        {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+        }
+      )}`;
     }
 
     this._setEventListeners();
