@@ -46,38 +46,42 @@ section.renderItems();
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
-const addTodoPopup = new PopupWithForm(addTodoPopupSelector, (inputValues) => {
-  const date = new Date(inputValues.date);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-  const todoData = {
-    id: uuidv4(),
-    name: inputValues.name,
-    date,
-    completed: false,
-  };
-  const todo = new Todo(todoData, todoTemplateSelector);
-  const todoElement = todo.getView();
+const addTodoPopup = new PopupWithForm(
+  addTodoPopupSelector,
+  (inputValues) => {
+    const date = new Date(inputValues.date);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    const todoData = {
+      id: uuidv4(),
+      name: inputValues.name,
+      date,
+      completed: false,
+    };
+    const todo = new Todo(todoData, todoTemplateSelector);
+    const todoElement = todo.getView();
 
-  todoElement
-    .querySelector(".todo__completed")
-    .addEventListener("change", (e) => {
-      todoCounter.updateCompleted(e.target.checked);
-    });
+    todoElement
+      .querySelector(".todo__completed")
+      .addEventListener("change", (e) => {
+        todoCounter.updateCompleted(e.target.checked);
+      });
 
-  todoElement
-    .querySelector(".todo__delete-btn")
-    .addEventListener("click", () => {
-      if (todoElement.querySelector(".todo__completed").checked) {
-        todoCounter.updateCompleted(false);
-      }
-      todoCounter.updateTotal(false);
-    });
+    todoElement
+      .querySelector(".todo__delete-btn")
+      .addEventListener("click", () => {
+        if (todoElement.querySelector(".todo__completed").checked) {
+          todoCounter.updateCompleted(false);
+        }
+        todoCounter.updateTotal(false);
+      });
 
-  section.addItem(todoElement);
-  todoCounter.updateTotal(true);
-  addTodoPopup.close();
-  formValidator.resetValidation();
-});
+    section.addItem(todoElement);
+    todoCounter.updateTotal(true);
+    addTodoPopup.close();
+    formValidator.resetValidation();
+  },
+  formValidator
+);
 addTodoPopup.setEventListeners();
 
 addTodoButton.addEventListener("click", () => {
