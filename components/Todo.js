@@ -14,14 +14,14 @@ export default class Todo {
     checkbox.addEventListener("change", (e) => {
       this._data.completed = e.target.checked;
       if (typeof this._handleCheck === "function") {
-        this._handleCheck(e);
+        this._handleCheck(e.target.checked);
       }
     });
 
     deleteBtn.addEventListener("click", () => {
       this._element.remove();
       if (typeof this._handleDelete === "function") {
-        this._handleDelete();
+        this._handleDelete(this._data.completed);
       }
     });
   }
